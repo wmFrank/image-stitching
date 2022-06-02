@@ -1,0 +1,10 @@
+代码说明：
+所有代码均是用Matlab写的，可以在MatLab下直接运行（需要安装VLFeat库）。
+代码结构：
+Click.m：程序入口1，使用鼠标手动选择匹配点的方法进行图像拼接。
+Sift.m：程序入口2，使用VLFeat的sift方法自动提取特征点、ubcmatch进行匹配，然后对图像进行拼接。
+GetCorrespondences.m：使用鼠标手动标记匹配点。
+GetHomography.m：根据4组匹配点计算单应性变换矩阵。
+GetWarpim.m：根据单应性变换矩阵对图片进行变换。
+GetMosaic：对变换后的图片进行拼接得到最终的结果。
+Ransac.m：实现Ransac的方法，对于匹配的点进行筛选，选出最具代表性的点，从而解决outlier的问题。

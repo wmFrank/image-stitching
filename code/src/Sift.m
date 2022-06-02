@@ -1,0 +1,12 @@
+im1 = im2double(imread('uttower1.jpg'));
+im2 = im2double(imread('uttower2.jpg'));
+im11 = single(rgb2gray(im1));
+im22 = single(rgb2gray(im2));
+[f1, d1] = vl_sift(im11);
+[f2, d2] = vl_sift(im22);
+[matches, ~] = vl_ubcmatch(d1, d2);
+[x1, y1, x2, y2] = Ransac(matches, f1, f2);
+H = GetHomography(x1,y1,x2,y2);
+[im3, diffr, diffc] = GetWarpim(im1, H);
+im = GetMosaic(im3, im2, diffr, diffc);
+imwrite(im,'mosaic2.png');
